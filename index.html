@@ -450,6 +450,32 @@ src="https://www.facebook.com/tr?id=526049074400954&ev=PageView&noscript=1"
   const modal = document.getElementById('formModal');
   const closeBtn = document.getElementById('closeModal');
 
+  // Intento 1: Escuchar mensajes de éxito del iframe de MailerLite (si envía postMessage)
+  window.addEventListener("message", function(e) {
+    if (e.origin.includes('mailerlite.io') || e.origin.includes('mailerlite.com')) {
+      if (typeof e.data === 'string' && (e.data.includes('success') || e.data.includes('submitted'))) {
+        window.location.href = '/gracias/';
+      } else if (typeof e.data === 'object' && e.data !== null) {
+        if (e.data.type === 'ml_webform_success' || e.data.success || e.data.event === 'submit') {
+          window.location.href = '/gracias/';
+        }
+      }
+    }
+  });
+
+  // Intento 2: Si el iframe de MailerLite recarga en lugar de usar AJAX al enviar el formulario
+  const iframe = document.querySelector('.modal-iframe-wrapper iframe');
+  if (iframe) {
+    let loadCount = 0;
+    iframe.addEventListener('load', () => {
+      loadCount++;
+      // loadCount = 1 es la carga inicial. Si vuelve a recargar, asumimos envío con éxito.
+      if (loadCount > 1) {
+        window.location.href = '/gracias/';
+      }
+    });
+  }
+
   btns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault(); // Evita navegar a la URL original
