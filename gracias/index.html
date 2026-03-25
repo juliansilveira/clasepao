@@ -40,6 +40,10 @@ src="https://www.facebook.com/tr?id=526049074400954&ev=Lead&noscript=1"
 
   * { margin:0; padding:0; box-sizing:border-box; }
 
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     font-family: 'Poppins', sans-serif;
     background: var(--negro);
@@ -51,7 +55,6 @@ src="https://www.facebook.com/tr?id=526049074400954&ev=Lead&noscript=1"
     justify-content: center;
     padding: 40px 24px;
     position: relative;
-    overflow: hidden;
   }
 
   body::before {
@@ -142,7 +145,7 @@ src="https://www.facebook.com/tr?id=526049074400954&ev=Lead&noscript=1"
 
   h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 6vw, 52px);
+    font-size: clamp(28px, 8vw, 52px);
     line-height: 1.1;
     color: var(--blanco);
     margin-bottom: 16px;
@@ -364,8 +367,27 @@ src="https://www.facebook.com/tr?id=526049074400954&ev=Lead&noscript=1"
   }
 
   @media (max-width: 480px) {
-    .clase-info { padding: 20px; }
-    .btn-wsp { width: 100%; justify-content: center; }
+    body {
+      padding: 30px 16px;
+    }
+    .clase-info {
+      padding: 20px 16px;
+    }
+    .clase-dato {
+      font-size: 13px;
+    }
+    .btn-wsp {
+      width: 100%;
+      justify-content: center;
+      padding: 14px 20px;
+      font-size: 14px;
+    }
+    .wsp-desc {
+      font-size: 13px;
+    }
+    .paso-texto {
+      font-size: 13px;
+    }
   }
 </style>
 </head>
